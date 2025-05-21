@@ -41,4 +41,14 @@ public class SecondLargest {
         System.out.println("Second Largest number is: "+getSecondLargest(input3) );
 
     }
+
+    /* Input array: [12, 35, 1, 10, 34, 1]
+    Second Largest number is: 34
+
+    Input array: [10, 5, 10]
+    Second Largest number is: 5
+
+    Input array: [10, 10, 10]
+    Second Largest number is: -1
+    */
 }

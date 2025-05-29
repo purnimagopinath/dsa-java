@@ -9,38 +9,33 @@ import java.util.Arrays;
 
 public class MajorityElement {
 
-    static int getMajorityElement(int[] arr){
-        int n = arr.length;
-        //If only one element then we can return it
-        if (n==1){
-            return arr[0];
-        }
-        int majority_ele = arr[0];
-        int max_count = 1;
-        int current_count;
-        int current_ele;
-        for(int i = 0; i<n; i++){
-            current_ele = arr[i];
-            current_count=1;
+    public static int getMajorityElement(int[] arr){
+        int candidate = -1, count = 0;
 
-            for(int j=i+1;j<n;j++){
-                if(current_ele==arr[j]){
-                    current_count++;
-                }
-            }
-            if(current_count>max_count){
-                max_count = current_count;
-                majority_ele = current_ele;
-            }
-            if(max_count>(n/2)){
-                break;
+        for (int num : arr) {
+            if (count == 0) {
+                candidate = num;
+                count = 1;
+            } else if (num == candidate) {
+                count++;
+            } else {
+                count--;
             }
         }
-        if(max_count>(n/2)){
-            return majority_ele;
+
+         count = 0;
+         for (int num : arr) {
+             if (num == candidate) {
+                 count++;
+             }
+         }
+         if (count > arr.length / 2) {
+             return candidate;
+         } else {
+             return -1;
         }
-        return -1;
     }
+
 
     public static void main(String[] args) {
         int[] input1 = {1, 1, 2, 1, 3, 5, 1};
@@ -54,9 +49,7 @@ public class MajorityElement {
         System.out.println("Majority Element  is: "+getMajorityElement(input3) );
 
     }
-    //Your program took more time than expected.Expected Time Limit : 1.73sec
-    // Complexity is O(n^2)
-    //Maybe use Something like hash to keep track of count and then iterate over it
+    //Boyer–Moore Majority Vote Algorithm.
 }
 
 /*Output:

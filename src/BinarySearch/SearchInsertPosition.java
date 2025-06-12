@@ -43,3 +43,18 @@ public class SearchInsertPosition {
 
     }
 }
+
+/*Sample Output
+
+Input array: [1, 3, 5, 6]
+Target Element is: 5
+Insert position is: 2
+
+Input array: [1, 3, 5, 6]
+Target Element is: 2
+Insert position is: 1
+
+Input array: [1, 3, 5, 6]
+Target Element is: 7
+Insert position is: 4
+ */

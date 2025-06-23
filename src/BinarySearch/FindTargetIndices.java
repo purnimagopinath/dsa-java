@@ -3,7 +3,6 @@
 
 
 package BinarySearch;
-import java.sql.Array;
 import java.util.*;
 
 public class FindTargetIndices {

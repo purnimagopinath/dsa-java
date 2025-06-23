@@ -5,8 +5,6 @@
 
 package BinarySearch;
 
-import java.util.Arrays;
-
 public class SquareRootOfInteger {
     static int floorSqrt(int n) {
         // Your code goes here

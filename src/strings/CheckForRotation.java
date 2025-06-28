@@ -13,12 +13,9 @@ public class CheckForRotation {
 //        // Generate and check all possible rotations of s1
 //        for (int i = 0; i < n; ++i) {
 //
-//            // If current rotation is equal to s2, return true
 //            if (s1.equals(s2)) {
 //                return true;
 //            }
-//
-//            // Right rotate s1
 //            char last = s1.charAt(s1.length() - 1);
 //            s1 = last + s1.substring(0, s1.length() - 1);
 //        }

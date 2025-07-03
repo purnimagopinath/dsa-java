@@ -1,5 +1,8 @@
 //https://www.geeksforgeeks.org/dsa/divisibility-by-7/
 
+// Easy - Strings
+
+
 package Math;
 
 public class DivisibleBy7 {

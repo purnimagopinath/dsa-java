@@ -17,7 +17,7 @@ public class LongestPalindrome {
                 chars.add(c);
             }
         }
-        if(chars.size()>0) count++;
+        if(!chars.isEmpty()) count++;
         return count;
     }
 

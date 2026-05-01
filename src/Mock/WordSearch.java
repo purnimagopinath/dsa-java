@@ -83,6 +83,8 @@ public class WordSearch {
     public boolean wordPresent(char[][] board, String word, int idx, int row, int column){
         if(idx==word.length()) return true;
         if(board[row][column]!=word.charAt(idx)) return false;
+        if(idx == word.length() - 1) return true;
+
         char temp = board[row][column];
         board[row][column] = '#';
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -114,10 +116,16 @@ public class WordSearch {
         words.add("eat");
         words.add("rain");
 
+
+        char[][] board1 = {{'a'}};
+        List<String> words1 = new ArrayList<>();
+        words1.add("a");
         System.out.println(obj.wordsInTheBoard(board, words));
+        System.out.println(obj.wordsInTheBoard(board1, words1));
     }
 }
 
 /*Sample Output:
 [oath, eat]
+[a]
  */

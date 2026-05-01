@@ -13,6 +13,7 @@ Output: ["1+2+3", "1*2*3"]
 /*
     My assumptions:
     String consists of only digits
+    Considering Single digits only
     Every digit can be used only once
     Digits will be considered in the order of their appearance in the string.
     We cannot skip any digit in the equation
@@ -79,4 +80,9 @@ public class ValidExpressions {
 
 
     }
+
+
+    /*Sample Output
+    [1+2+3, 1*2*3]
+     */
 }

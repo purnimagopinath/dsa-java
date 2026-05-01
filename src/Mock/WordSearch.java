@@ -23,34 +23,63 @@ Output: ["oath","eat"]
  same cell cannot be reused for the same word, but for other word, we can reuse the cell
  That would mea, interlinked words are accepted in the board
  The input board is a char board
- Input consists of alphanumeric characters only
+ Input consists of alphanumeric only
+
+
 
  */
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class WordSearch {
     public List<String> wordsInTheBoard(char[][] board, List<String> words){
         List<String> ans = new ArrayList<>();
         int m = board.length;
         int n = board[0].length;
-        for(String word:words){
-            for(int i=0;i<m;i++){
-                for(int j=0;j<n;j++){
-                    if(board[i][j]==word.charAt(0)){
-                        if(wordPresent(board, word, 0, i, j)){
-                            ans.add(word);
-                            break;
-                        }
-                    }
+        Map<Character, Integer> freq = new HashMap<>();
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                freq.put(board[i][j], freq.getOrDefault(board[i][j],0)+1);
+            }
+        }
+        Map<Character, List<int[]>> charMap = new HashMap<>();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                char c = board[i][j];
+                if(charMap.containsKey(c)){
+                    charMap.get(c).add(new int[]{i, j});
+                } else {
+                    List<int[]> list = new ArrayList<>();
+                    list.add(new int[]{i, j});
+                    charMap.put(c, list);
                 }
             }
-
+        }
+        for(String word:words){
+            if(!checkFreqMatch(freq, word)) continue;
+            char c = word.charAt(0);
+            List<int[]> rc = charMap.get(c);
+            for(int[] start:rc) {
+                if (wordPresent(board, word, 0, start[0], start[1])) {
+                    ans.add(word);
+                    break;
+                }
+            }
         }
         return ans;
     }
 
+    public boolean checkFreqMatch(Map<Character, Integer> freq, String word){
+        Map<Character, Integer> wordFreq = new HashMap<>();
+        for(char c:word.toCharArray()){
+            wordFreq.put(c, wordFreq.getOrDefault(c,0)+1);
+            if(wordFreq.get(c)>freq.getOrDefault(c, 0)) return false;
+        }
+        return true;
+    }
     public boolean wordPresent(char[][] board, String word, int idx, int row, int column){
         if(idx==word.length()) return true;
         if(board[row][column]!=word.charAt(idx)) return false;
@@ -88,3 +117,7 @@ public class WordSearch {
         System.out.println(obj.wordsInTheBoard(board, words));
     }
 }
+
+/*Sample Output:
+[oath, eat]
+ */

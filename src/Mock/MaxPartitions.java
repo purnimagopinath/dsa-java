@@ -59,36 +59,24 @@ public class MaxPartitions {
     public int maxPartitionCount(int[] nums){
         int n = nums.length;
         if(n<=1) return n;
-        int[] maxInteger = new int[n];
-        maxInteger[0] = nums[0];
-        int[] maxCount = new int[n];
-        return checkPartitions(nums, n, 0, maxCount, maxInteger);
-    }
-
-    public int checkPartitions(int[] nums, int n , int idx, int[] maxCount, int[] maxInteger){
-        if(idx==n) return 0;
-
+        int max = nums[0];
         int count = 0;
-        //partition check
-        if(idx+1<n && maxInteger[idx]<=nums[idx+1]){
-            maxInteger[idx+1] = nums[idx+1];
-            count = 1+checkPartitions(nums, n, idx+1, maxCount, maxInteger);
+        int idx = 0;
+        while(idx<n){
+            if(idx+1<n && max<=nums[idx+1]){
+                max = nums[idx+1];
+                count++;
+            }else if(idx+1==n){
+                count++;
+            }else{
+                max = nums[idx];
+            }
+            idx++;
 
-        }else if(idx+1==n){
-            count = 1;
-        }else{
-            maxInteger[idx+1] = nums[idx];
-            count = checkPartitions(nums, n, idx+1, maxCount, maxInteger);
         }
-
-        maxCount[idx] = Math.max(maxCount[idx], count);
-
-        return maxCount[idx];
-
-
-
-        //no partition
+        return count;
     }
+
 
     public static void main(String[] args){
         MaxPartitions obj = new MaxPartitions();
